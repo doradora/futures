@@ -6,7 +6,7 @@ def initialize_app():
     # 登入API
     api.login(
         api_key="J8Y5k6yRHF5B524hEPVM1m6KfRHPwec772zu9FasKVbE",     # 請修改此處
-        secret_key="5biJqZb8CKQufjA11kWKYGPr8R2c2wRXHdsdASYBfRLb"   # 請修改此處
+        secret_key="5biJqZb8CKQufjA11kWKYGPr8R2c2wRXHdsdASYBfRLb",   # 請修改此處
     )
     return api
 
