@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import shioaji as sj
+import json
+
 from shiojia_api.app_initializer import api
 from django.views.decorators.csrf import csrf_exempt
 
@@ -27,13 +29,13 @@ def TXF1():
 def order(request):
     if request.method == 'POST':
         body = request.POST
-        print(body.get('action'))
+        print(body)
         if body.get('action') == 'sell':
             action = sj.constant.Action.Sell
         elif body.get('action') == 'buy':
             action = sj.constant.Action.Buy
         order_price=int(body.get('order_price'))
-        quantity = int(body.get('contracts'))
+        quantity = int(body.get('quantity'))
 
         contract = TXF1()
 
@@ -41,12 +43,17 @@ def order(request):
             action=action,
             price=order_price,
             quantity=quantity,
-            price_type=sj.constant.FuturesPriceType.LMT,#{LMT: 限價, MKT: 市價, MKP: 範圍市價}
+            price_type=sj.constant.FuturesPriceType.MKT,#{LMT: 限價, MKT: 市價, MKP: 範圍市價}
             order_type=sj.constant.OrderType.ROD, 
             octype=sj.constant.FuturesOCType.Auto,
             account=api.futopt_account
         )
 
         trade = api.place_order(contract, order)
-        print(order)
+    return HttpResponse("OK")
+
+def update_status(request):
+    positions = api.list_positions(api.futopt_account)
+    print(positions)
+
     return HttpResponse("OK")

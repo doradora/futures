@@ -6,4 +6,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("account/", views.trendAccount, name="account"),
     path("order/", views.order, name="order"),
+    path("status/", views.update_status, name="update_status"),
 ]
