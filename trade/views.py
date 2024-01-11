@@ -13,10 +13,11 @@ def fut_order(request):
             'action': query_dict.get('action'),
             'price': query_dict.get('price'),
             'position_size': query_dict.get('position_size'),
-            'price_type': query_dict.get('price_type')
+            'price_type': query_dict.get('price_type',"MKT")
         }
         try:
             msg = shioaji_fut_order(**data_dict)
+            # K71YTPQIQfXXZ3b7TOUYANRvgFvanhoDDYWYgVC20Wg
             return JsonResponse({"status": "success", "msg": msg})
         except json.JSONDecodeError:
             # 如果請求體不是有效的 JSON，返回錯誤
