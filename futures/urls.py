@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import include,path
 
 urlpatterns = [
-    path("/", include("shiojia_api.urls")),
+    path("", include("shiojia_api.urls")),
     path("shiojia/", include("shiojia_api.urls")),
     path("fut/", include("trade.urls")),
     path('admin/', admin.site.urls),
