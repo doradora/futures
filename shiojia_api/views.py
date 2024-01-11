@@ -32,6 +32,7 @@ def get_positions(request):
         list.append({"code":p.code,"quantity":p.quantity,"direction":p.direction})
     print(positions)
     return JsonResponse({"status": "success", "positions": list})
+
 def find_contract(code):
     positions = api.list_positions(api.futopt_account)
     for position in positions:
