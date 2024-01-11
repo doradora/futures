@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)gdw+ys+c2l48)jnn!7b520&o-18m#ri_$yv2xsb7430exdnsf'
+SECRET_KEY = 'b72e430260a2fcdc9fcdd1e5ecb4f9d4c38b369e38534817e5015af1e03df432'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shiojia_api',
-    'trade_trend_tracker',
-    'tv_api'
+    'trade'
 ]
 
 MIDDLEWARE = [
@@ -78,11 +77,13 @@ WSGI_APPLICATION = 'futures.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'futures',
+        'HOST': 'localhost',
+        'USER': 'futures',
+        'PASSWORD': 'futures',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
