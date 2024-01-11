@@ -19,5 +19,6 @@ from django.urls import include,path
 
 urlpatterns = [
     path("shiojia/", include("shiojia_api.urls")),
+    path("fut/", include("trade.urls")),
     path('admin/', admin.site.urls),
 ]

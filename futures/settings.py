@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shiojia_api',
-    'trade_trend_tracker'
+    'trade'
 ]
 
 MIDDLEWARE = [
