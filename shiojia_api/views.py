@@ -44,21 +44,15 @@ def shioaji_fut_order(action,price,position_size,octupy="Auto",price_type="LMT",
     contract = TXF1()
     position = find_contract(contract.code)
     if position:
-
-        if position.direction == sj.constant.Action.Sell:
-            if action == "Buy":
-                quantity = position.quantity + abs(int(position_size))
-            if action == "Sell":
-                quantity = abs(int(position_size)) - position.quantity
-        elif position.direction == sj.constant.Action.Buy:
-            if action == "Sell":
-                quantity = position.quantity + abs(int(position_size))
-            if action == "Buy":
-                quantity = abs(int(position_size)) - position.quantity
-        
+        if action == "buy":
+            quantity = position.quantity + abs(int(position_size))
+            sj_action = sj.constant.Action.Buy
+        if action == "sell":
+            quantity = abs(int(position_size)) - position.quantity
+            sj_action = sj.constant.Action.Sell
         if quantity > 0:
             order = api.Order(
-                action=sj.constant.Action[action],
+                action=sj_action,
                 price=int(price),
                 quantity=abs(int(quantity)),
                 price_type=sj.constant.FuturesPriceType[price_type],#{LMT: 限價, MKT: 市價, MKP: 範圍市價}
